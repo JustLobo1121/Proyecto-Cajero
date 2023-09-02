@@ -4,13 +4,13 @@ const MainDiv = `<main class="container-fluid"><main class=" ms-sm-auto px-md-4"
     AgregoDiv = `<div class="input-group"><span class="input-group-text">Ingrese Cuanto dinero quiere agregar!</span><input type="number" name="" id="" onkeyup="InputDeposito(this.value)"><button type="button" class="btn btn-success" onclick="deposit()">Agregar!</button></div>`,
     RetiroDiv = `<div class="input-group"><span class="input-group-text">Ingrese Cuanto dinero quiere Retirar!</span><input type="number" name="" id="" onkeyup="InputretiroFun(this.value)"><button type="button" class="btn btn-success" onclick="Withdraw()">Agregar!</button></div>`,
     Side = `<main class=" flex-nowrap h-100"><div class="d-flex flex-column flex-shrink-0 p-3 h-100 text-bg-dark" style="width: 280px;"><a href="#" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none"><span class="fs-4"><img src="./assets/img/descarga.png" alt="">BancoEstado</span></a><hr><ul class="nav nav-pills flex-column mb-auto"><li class="nav-item"><a href="#" class="nav-link active" aria-current="page"><svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#home"/></svg>Inicio</a></li><li><a href="#" class="nav-link text-white" onclick="ConsultaSaldo()"><svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>Consulta de Saldo</a></li><li><a href="#" class="nav-link text-white" onclick="Depositos()"><svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#table"/></svg>Depositos</a></li><li><a href="#" class="nav-link text-white" onclick="Retiros()"><svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#grid"/></svg>Retiros</a></li></ul><hr><div class="dropdown"><a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><img src="./assets/img/icons8-male-user-48.png" alt="" width="32" height="32" class="rounded-circle me-2"><strong>Luis</strong></a><ul class="dropdown-menu dropdown-menu-dark text-small shadow"><li><a class="dropdown-item" href="#">Ajustes</a></li><li><a class="dropdown-item" href="#">Perfil</a></li><li><hr class="dropdown-divider"></li><li><a class="dropdown-item" href="#">Cerrar Sesion</a></li></ul></div></div></main>`
-const MaxIntentos = 3, UserName = "Luis", PassWord = 1234
+const MaxIntentos = 3, UserName = "Luis", PassWord = 1234, Saldo = 540
 const body = document.querySelector ("body"),
     formBody = document.querySelector(".form-signin")
 let InputUser, InputPass, Inputingreso = 0,
     Inputretiro = 0, Intentos = 0,
     ControladorConsultas = 0, SaldoActualizado = 0, 
-    SaldoActualizado1 = 0, Saldo = 540, MuestraDatos
+    MuestraDatos, controlador1
 
 // funciones para que capte lo que pone el usuario
 function User(user) {InputUser = user}
@@ -24,80 +24,53 @@ function CambioDePantalla() {
 }
 function StartLogin() {
     // mientras que intentos sea menor que 3 todo okey
-    if (Intentos < MaxIntentos) {
-        if (InputUser == UserName && (InputPass	 == PassWord)) {
+    switch (Intentos < MaxIntentos) {
+        case InputUser == UserName && InputPass == PassWord:
             CambioDePantalla()
-        } else if (InputUser != UserName && (InputPass != PassWord)) {
-            Intentos++;
-        }
+            break;
+        case InputUser != UserName && InputPass != PassWord:
+            Intentos++
+            break;
     }
 }
-// supuesta funcion para validar👍
-function Validar() {
-    if (SaldoActualizado == 0 && Inputingreso == 0 && Inputretiro == 0) {
-        MuestraDatos.innerHTML = `<p>Tiene un Saldo de: $${Saldo}</p>`
-    } else if (SaldoActualizado == 0 && Inputingreso != 0){
-        MuestraDatos.innerHTML = `<p>Tiene un Saldo de: $${SaldoActualizado}</p>`
-    }else if (SaldoActualizado == 0 && Inputretiro != 0) {
-        MuestraDatos.innerHTML = `<p>Tiene un Saldo de: $${SaldoActualizado}</p>`
-    } else if (SaldoActualizado == 0 && SaldoActualizado1 == 0) {
-        MuestraDatos.innerHTML = `<p>Tiene un Saldo de: $${SaldoActualizado}</p>`
-    } else if (SaldoActualizado != 0 && SaldoActualizado1 == 0) {
-        MuestraDatos.innerHTML = `<p>Tiene un Saldo de: $${SaldoActualizado}</p>`
-    } else if (SaldoActualizado1 != 0) {
-        MuestraDatos.innerHTML = `<p>Tiene un Saldo de: $${SaldoActualizado1}</p>`
-    } else if (SaldoActualizado1 == 0 && Inputingreso != 0 && Inputretiro != 0 && SaldoActualizado != 0) {
-        MuestraDatos.innerHTML = `<p>Tiene un Saldo de: $${SaldoActualizado1}</p>`
-    }
-}
-// controlador principal para todas las consultas
+// controlador principal para todas las consultas de deposito y retiro
 function ControladorDeConsultas() {
     if (ControladorConsultas == 1) {
-        Validar()
-    } else if (ControladorConsultas == 2) {
         MuestraDatos.innerHTML = AgregoDiv
-    } else if (ControladorConsultas == 3) {
+    } else if (ControladorConsultas == 2) {
         MuestraDatos.innerHTML = RetiroDiv
-    } else if (ControladorConsultas == 4) {
-        MuestraDatos.innerHTML = `<p>Tu Nuevo Saldo es de: $${SaldoActualizado} y tu anterior Saldo es de: $${Saldo}</p>`
-    } else if (ControladorConsultas == 5) {
-        MuestraDatos.innerHTML = `<p>Tu Nuevo Saldo es de: $${SaldoActualizado} y tu anterior Saldo es de: $${Saldo}</p>`
-    } else if (ControladorConsultas == 6) {
-        MuestraDatos.innerHTML = `<p>Tu Nuevo Saldo es de: $${SaldoActualizado1} y tu anterior Saldo es de: $${SaldoActualizado}</p>`
     }
 }
-
 function ConsultaSaldo() {
-    ControladorConsultas = 1
-    ControladorDeConsultas() 
+    if (SaldoActualizado == 0) {
+        MuestraDatos.innerHTML = `<p>Tu Nuevo Saldo es de: $${Saldo}</p>`
+    } else if (Inputingreso !=0 || Inputretiro !=0) {
+        MuestraDatos.innerHTML = `<p>Tu Saldo es de: $${SaldoActualizado}</p>`
+    }
 }
 function Depositos() {
     ControladorDeConsultas() 
-    ControladorConsultas = 2
+    ControladorConsultas = 1
 }
 function deposit() {
     if (SaldoActualizado == 0) {
         SaldoActualizado = Saldo + Inputingreso
-        ControladorConsultas = 4
-        ControladorDeConsultas()
-    } else if (SaldoActualizado != 0 && Inputingreso != 0) {
-        SaldoActualizado1 = SaldoActualizado + Inputingreso
-        ControladorConsultas = 6
-        ControladorDeConsultas()
+        MuestraDatos.innerHTML = `<p>Tu Saldo es de: $${SaldoActualizado}</p>`
+    } else if (SaldoActualizado !=0 && Inputingreso !=0 || Inputretiro !=0) {
+        Inputingreso + SaldoActualizado
+        MuestraDatos.innerHTML = `<p>Tu Saldo es de: $${SaldoActualizado}</p>`
     }
 }
 function Retiros() {
     ControladorDeConsultas() 
-    ControladorConsultas = 3
+    ControladorConsultas = 2
 }
 function Withdraw() {
     if (SaldoActualizado == 0) {
         SaldoActualizado = Saldo - Inputretiro
-        ControladorConsultas = 5
-        ControladorDeConsultas()
-    } else if (SaldoActualizado != 0) { 
-        SaldoActualizado1 = SaldoActualizado - Inputretiro
-        ControladorConsultas = 6
-        ControladorDeConsultas()
+        MuestraDatos.innerHTML = `<p>Tu Saldo es de: $${SaldoActualizado}</p>`
+    } else if (SaldoActualizado !=0 && Inputingreso !=0 || Inputretiro !=0) {
+        Inputingreso - SaldoActualizado
+        MuestraDatos.innerHTML = `<p>Tu Saldo es de: $${SaldoActualizado}</p>`
     }
 }
