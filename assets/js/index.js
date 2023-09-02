@@ -3,20 +3,20 @@ const MainDiv = `<main class="container-fluid"><main class=" ms-sm-auto px-md-4"
             <symbol id="people-circle" viewBox="0 0 16 16"><path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/><path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/></symbol><symbol id="grid" viewBox="0 0 16 16"><path d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5v-3zM2.5 2a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zm6.5.5A1.5 1.5 0 0 1 10.5 1h3A1.5 1.5 0 0 1 15 2.5v3A1.5 1.5 0 0 1 13.5 7h-3A1.5 1.5 0 0 1 9 5.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zM1 10.5A1.5 1.5 0 0 1 2.5 9h3A1.5 1.5 0 0 1 7 10.5v3A1.5 1.5 0 0 1 5.5 15h-3A1.5 1.5 0 0 1 1 13.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zm6.5.5A1.5 1.5 0 0 1 10.5 9h3a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 13.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3z"/></symbol></svg>`,
     AgregoDiv = `<div class="input-group"><span class="input-group-text">Ingrese Cuanto dinero quiere agregar!</span><input type="number" name="" id="" onkeyup="InputDeposito(this.value)"><button type="button" class="btn btn-success" onclick="deposit()">Agregar!</button></div>`,
     RetiroDiv = `<div class="input-group"><span class="input-group-text">Ingrese Cuanto dinero quiere Retirar!</span><input type="number" name="" id="" onkeyup="InputretiroFun(this.value)"><button type="button" class="btn btn-success" onclick="Withdraw()">Agregar!</button></div>`,
-    Side = `<main class=" flex-nowrap h-100"><div class="d-flex flex-column flex-shrink-0 p-3 h-100 text-bg-dark" style="width: 280px;"><a href="#" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none"><span class="fs-4"><img src="./assets/img/descarga.png" alt="">BancoEstado</span></a><hr><ul class="nav nav-pills flex-column mb-auto"><li class="nav-item"><a href="#" class="nav-link active" aria-current="page"><svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#home"/></svg>Inicio</a></li><li><a href="#" class="nav-link text-white" onclick="ConsultaSaldo()"><svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>Consulta de Saldo</a></li><li><a href="#" class="nav-link text-white" onclick="Depositos()"><svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#table"/></svg>Depositos</a></li><li><a href="#" class="nav-link text-white" onclick="Retiros()"><svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#grid"/></svg>Retiros</a></li></ul><hr><div class="dropdown"><a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><img src="./assets/img/icons8-male-user-48.png" alt="" width="32" height="32" class="rounded-circle me-2"><strong>Luis</strong></a><ul class="dropdown-menu dropdown-menu-dark text-small shadow"><li><a class="dropdown-item" href="#">Ajustes</a></li><li><a class="dropdown-item" href="#">Perfil</a></li><li><hr class="dropdown-divider"></li><li><a class="dropdown-item" href="#">Cerrar Sesion</a></li></ul></div></div></main>`
+    Side = `<main class="flex-nowrap h-100"><div class="d-flex flex-column flex-shrink-0 p-3 h-100 text-bg-dark" style="width: 280px;"><a href="#" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none"><span class="fs-4"><img src="./assets/img/descarga.png" alt="">BancoEstado</span></a><hr><ul class="nav nav-pills flex-column mb-auto"><li class="nav-item"><a href="#" class="nav-link active" aria-current="page"><svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#home"/></svg>Inicio</a></li><li><a href="#" class="nav-link text-white" onclick="ConsultaSaldo()"><svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>Consulta de Saldo</a></li><li><a href="#" class="nav-link text-white" onclick="Depositos()"><svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#table"/></svg>Depositos</a></li><li><a href="#" class="nav-link text-white" onclick="Retiros()"><svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#grid"/></svg>Retiros</a></li></ul><hr><div class="dropdown"><a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><img src="./assets/img/icons8-male-user-48.png" alt="" width="32" height="32" class="rounded-circle me-2"><strong>Luis</strong></a><ul class="dropdown-menu dropdown-menu-dark text-small shadow"><li><a class="dropdown-item" href="#">Ajustes</a></li><li><a class="dropdown-item" href="#">Perfil</a></li><li><hr class="dropdown-divider"></li><li><a class="dropdown-item" href="#">Cerrar Sesion</a></li></ul></div></div></main>`
 const MaxIntentos = 3, UserName = "Luis", PassWord = 1234, Saldo = 540
 const body = document.querySelector ("body"),
     formBody = document.querySelector(".form-signin")
-let InputUser, InputPass, Inputingreso = 0,
-    Inputretiro = 0, Intentos = 0,
-    ControladorConsultas = 0, SaldoActualizado = 0, 
-    MuestraDatos, controlador1
+let InputUser, InputPass, InputIngreso = 0,
+    InputRetiro = 0, Intentos = 0,
+    ControladorConsultas = 0,
+    MuestraDatos, SaldoAct = Saldo
 
 // funciones para que capte lo que pone el usuario
 function User(user) {InputUser = user}
 function Password(pass) {InputPass = Number(pass)}
-function InputDeposito(dep) {Inputingreso = Number(dep)}
-function InputretiroFun(ret) {Inputretiro = Number(ret)}
+function InputDeposito(dep) {InputIngreso = Number(dep)}
+function InputretiroFun(ret) {InputRetiro = Number(ret)}
 function CambioDePantalla() {
     body.innerHTML = sgv + Side + MainDiv
     formBody.remove()
@@ -42,35 +42,21 @@ function ControladorDeConsultas() {
     }
 }
 function ConsultaSaldo() {
-    if (SaldoActualizado == 0) {
-        MuestraDatos.innerHTML = `<p>Tu Nuevo Saldo es de: $${Saldo}</p>`
-    } else if (Inputingreso !=0 || Inputretiro !=0) {
-        MuestraDatos.innerHTML = `<p>Tu Saldo es de: $${SaldoActualizado}</p>`
-    }
+    MuestraDatos.innerHTML = `<p>Tu Saldo es de: $${SaldoAct}</p>`
 }
 function Depositos() {
     ControladorDeConsultas() 
     ControladorConsultas = 1
 }
 function deposit() {
-    if (SaldoActualizado == 0) {
-        SaldoActualizado = Saldo + Inputingreso
-        MuestraDatos.innerHTML = `<p>Tu Saldo es de: $${SaldoActualizado}</p>`
-    } else if (SaldoActualizado !=0 && Inputingreso !=0 || Inputretiro !=0) {
-        Inputingreso + SaldoActualizado
-        MuestraDatos.innerHTML = `<p>Tu Saldo es de: $${SaldoActualizado}</p>`
-    }
+    SaldoAct = SaldoAct + InputIngreso
+    MuestraDatos.innerHTML = `<p>Tu Saldo es de: $${SaldoAct}</p>`
 }
 function Retiros() {
     ControladorDeConsultas() 
     ControladorConsultas = 2
 }
 function Withdraw() {
-    if (SaldoActualizado == 0) {
-        SaldoActualizado = Saldo - Inputretiro
-        MuestraDatos.innerHTML = `<p>Tu Saldo es de: $${SaldoActualizado}</p>`
-    } else if (SaldoActualizado !=0 && Inputingreso !=0 || Inputretiro !=0) {
-        Inputingreso - SaldoActualizado
-        MuestraDatos.innerHTML = `<p>Tu Saldo es de: $${SaldoActualizado}</p>`
-    }
+    SaldoAct = SaldoAct - InputRetiro
+    MuestraDatos.innerHTML = `<p>Tu Saldo es de: $${SaldoAct}</p>`
 }
