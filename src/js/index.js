@@ -24,25 +24,37 @@ function CambioDePantalla() {
 }
 function StartLogin() {
     // mientras que intentos sea menor que 3 todo okey
-    switch (Intentos < MaxIntentos) {
-        case InputUser == UserName && InputPass == PassWord:
-            CambioDePantalla()
-            break;
-        case InputUser != UserName && InputPass != PassWord:
-            Intentos++
-            break;
+    if (Intentos > MaxIntentos) {
+        alert("ya alcanzo el limite de intentos!")
+    }
+    if (InputUser == UserName && InputPass == PassWord) {
+        CambioDePantalla()
+    } else if (InputUser != UserName && InputPass != PassWord) {
+        Intentos++
     }
 }
 // controlador principal para todas las consultas de deposito y retiro
 function ControladorDeConsultas() {
     if (ControladorConsultas == 1) {
         MuestraDatos.innerHTML = AgregoDiv
-    } else if (ControladorConsultas == 2) {
+    }
+    if (ControladorConsultas == 2) {
         MuestraDatos.innerHTML = RetiroDiv
     }
 }
+function validador() {
+    if (InputIngreso || InputRetiro == 0) {
+        MuestraDatos.innerHTML = `<p>Tu Saldo es de: $${Saldo}</p>`
+    }
+    if (InputIngreso || InputRetiro != 0 && SaldoAct <= 0) {
+        SaldoAct = 0
+        MuestraDatos.innerHTML = `<p>Tu Saldo es de: $${SaldoAct}</p>`
+    } else {
+        MuestraDatos.innerHTML = `<p>Tu Saldo es de: $${SaldoAct}</p>`
+    }
+}
 function ConsultaSaldo() {
-    MuestraDatos.innerHTML = `<p>Tu Saldo es de: $${SaldoAct}</p>`
+    validador()
 }
 function Depositos() {
     ControladorDeConsultas() 
@@ -50,7 +62,7 @@ function Depositos() {
 }
 function deposit() {
     SaldoAct = SaldoAct + InputIngreso
-    MuestraDatos.innerHTML = `<p>Tu Saldo es de: $${SaldoAct}</p>`
+    validador()
 }
 function Retiros() {
     ControladorDeConsultas() 
@@ -58,5 +70,5 @@ function Retiros() {
 }
 function Withdraw() {
     SaldoAct = SaldoAct - InputRetiro
-    MuestraDatos.innerHTML = `<p>Tu Saldo es de: $${SaldoAct}</p>`
+    validador()
 }
